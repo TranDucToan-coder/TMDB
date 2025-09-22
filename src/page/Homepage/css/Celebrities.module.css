@@ -1,0 +1,19 @@
+.wrapper{
+    width: 100%;
+}
+.wrapper img{
+    width: 80%;
+    border-radius: 50%;
+    object-fit: contain;
+}
+.wrapper_image{
+    display: flex;
+    justify-content: center;
+}
+.wrapper .item{
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    cursor: pointer;
+}

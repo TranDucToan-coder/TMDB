@@ -1,0 +1,18 @@
+.wrapper{
+    width: 100%;
+    height: 50vh;
+    background-color: rgba(0, 255, 255, 0.062);
+    aspect-ratio: 16/9;
+    position: relative;
+}
+.wrapper img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering:optimizeQuality;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
+}
+.content{
+    position: absolute;
+    inset: 0;
+}

@@ -1,0 +1,6 @@
+.slick{
+    display: flex;
+}
+iframe{
+    aspect-ratio: 16/9;
+}
