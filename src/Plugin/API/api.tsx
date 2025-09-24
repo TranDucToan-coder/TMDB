@@ -39,14 +39,14 @@ export async function getTrailer(page: number) {
     if (response) {
       const dataMovie = response.data.results;
       const responseTrailer = await Promise.all(
-        dataMovie.map(async (movie : any) => {
+        dataMovie.map(async (movie: any) => {
           const data = await InstanceAxios.get(`/movie/${movie.id}/videos?page=1`)
           const keyVideo = data?.data?.results[0].key;
           return {
             id: movie.id,
             title: movie.title,
             poster_path: movie.poster_path,
-            key : keyVideo
+            key: keyVideo
           }
         })
       )
@@ -57,7 +57,7 @@ export async function getTrailer(page: number) {
     throw error;
   }
 }
-export async function getDataUpcoming(page:number) {
+export async function getDataUpcoming(page: number) {
   try {
     page = 1;
     const response = await InstanceAxios.get(`/movie/upcoming?page=${page}`)
@@ -69,7 +69,7 @@ export async function getDataUpcoming(page:number) {
     throw error;
   }
 }
-export async function getActor(page : number) {
+export async function getActor(page: number) {
   try {
     page = 1;
     const response = await InstanceAxios.get(`/person/popular?page=${page}`)
@@ -82,12 +82,22 @@ export async function getActor(page : number) {
   }
 }
 //Detail
-export async function getDetailOfFilm(id : string){
+export async function getDetailOfFilm(id: string) {
   try {
     const response = await InstanceAxios.get(`/movie/${id}`)
-    if(response){
+    if (response) {
       return response.data
     }
+  } catch (error) {
+    console.error("Lỗi khi lấy chi tiết bộ phim:", error);
+    throw error;
+  }
+}
+export async function getListActorOfFilm(id: string) {
+  try {
+    const response = await InstanceAxios.get(`/movie/${id}/credits`)
+    if(response)
+      return response.data
   } catch (error) {
     console.error("Lỗi khi lấy chi tiết bộ phim:", error);
     throw error;
