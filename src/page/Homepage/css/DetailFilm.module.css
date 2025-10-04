@@ -1,18 +1,124 @@
+@media only screen and (max-width : 768px){
+    .content{
+        flex-direction: column;
+        height:150vh !important;
+    }
+    .leftContent{
+        width: 100% !important;
+        justify-content: space-around;
+        margin-left: 0% !important;
+        margin-top: 2% !important;
+    }
+    .rightContent{
+        width: 100% !important;
+        padding: 2%;
+    }
+    .rightContent .id{
+        text-align: end;
+    }
+    .rightContent .title {
+        line-height: 5vh !important;
+        margin-top: -2%;
+    }
+    .mainContent{
+        flex-direction: column;
+    }
+    .mainContent .leftColumn{
+        width: 100% !important;
+        margin-left: 0% !important;
+    }
+    .mainContent .rightColumn{
+        width: 100% !important;
+        margin-left: 0% !important;
+    }
+    .mainContent .rightColumn img{
+        width: 10%;
+    }
+    .chapter{
+        width: 100% !important;
+    }
+    .chapter button{
+        width: 20vw !important;
+    }
+    .listChapter{
+        display: flex;
+    }
+}
 .wrapper{
     width: 100%;
-    height: 50vh;
-    background-color: rgba(0, 255, 255, 0.062);
-    aspect-ratio: 16/9;
-    position: relative;
-}
-.wrapper img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    image-rendering:optimizeQuality;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.24));
 }
 .content{
-    position: absolute;
-    inset: 0;
+    width: 100%;
+    min-height: 50vh;
+    height: 50vh;
+    aspect-ratio: 16/9;
+    display: flex;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.404);
+}
+
+.leftContent{
+    width: 20%;
+    height: auto;
+    object-fit: contain;
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+}
+.leftContent img{
+    width: 80%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+.rightContent{
+    width: 60%;
+    height: auto;
+    padding-top: 2%;
+    line-height: 2vh;
+}
+.rightContent .id{
+    font-size: 0.5rem;
+}
+.rightContent .title{
+    font-size: 2rem;
+}
+.rightContent .type{
+    display: flex;
+    gap: 1vw;
+}
+.rightContent .overview{
+    line-height: 3vh;
+}
+hr{
+    width: 80%;
+}
+.mainContent{
+    width: 100%;
+    display: flex;
+}
+.mainContent .leftColumn{
+    width: 80%;
+    margin-left: 3%;
+}
+.mainContent .rightColumn{
+    width: 10%;
+    border-left: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: 0px 0px 3px 0px rgba(155, 154, 154, 0.61);
+    margin-left: -5%;
+}
+.chapter{
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+.chapter button{
+    width: 5vw;
+    height: 5vh;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

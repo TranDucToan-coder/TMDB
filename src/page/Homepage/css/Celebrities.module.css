@@ -1,3 +1,9 @@
+@media only screen and (max-width : 768px){
+    .wrapperList{
+        width: 100% !important;
+    }
+}
+
 .wrapper{
     width: 100%;
 }
@@ -11,6 +17,27 @@
     justify-content: center;
 }
 .wrapper .item{
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    cursor: pointer;
+}
+
+.wrapperList{
+    width: 80%;
+    margin: 0 auto;
+}
+.wrapperList img{
+    width: 80%;
+    border-radius: 10px;
+    object-fit: contain;
+}
+.wrapperList .wrapper_image{
+    display: flex;
+    justify-content: center;
+}
+.wrapperList .item{
     width: auto;
     display: flex;
     justify-content: space-around;

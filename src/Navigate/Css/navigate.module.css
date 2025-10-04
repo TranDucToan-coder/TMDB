@@ -1,3 +1,11 @@
+@media only screen and (max-width : 768px){
+    .top_navigate ul{
+        width: 100% !important;
+        gap: 2%;
+        font-size: 0.8rem;
+        justify-content: flex-start !important;
+    }   
+}
 .top_navigate{
     width: 100%;
 }

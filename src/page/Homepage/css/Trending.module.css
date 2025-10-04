@@ -1,3 +1,8 @@
+@media only screen and (max-width : 768px){
+    .title{
+        
+    }
+}
 .trending{
     width: 100%;
     height: auto;

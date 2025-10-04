@@ -1,0 +1,84 @@
+@media (max-width: 768px) {
+    .wrapper{
+        width: 100% !important;
+    }
+    .wrapper .content{
+        width: 100% !important;
+        flex-direction: column;
+    }
+    .wrapper .content .content{
+        width: 100%;
+    }
+    .content .title{
+        height: 2vh !important;
+    }
+    .content input{
+        height: 5vh !important;
+        margin-bottom: 2% !important;
+        padding: 3% !important;
+    }
+}
+.wrapper{
+    width: 20%;
+    height: 50vh;
+    margin: 10% auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper .content{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    border-radius: 20px;
+}
+.content .wrapper{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.content p{
+    text-align: center;
+}
+.content .title{
+    font: 2rem bold;
+    height: fit-content;
+    width: auto;
+}
+.content .input{
+    display: flex;
+    justify-content: center;
+    line-height: 20px;
+    width: 100%;
+}
+.content input{
+    width: 80%;
+    height: 4vh;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-left: 0.5vw;
+}
+.content .submit{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 2vh;
+}
+.content .submit button{
+    width: 100%;
+    height: 4vh;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin:  0 auto;
+}
+.content .submit .Signup{
+    cursor: pointer;
+}

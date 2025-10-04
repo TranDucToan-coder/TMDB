@@ -1,6 +1,25 @@
+@media only screen and (max-width : 768px){
+    .wrapper{
+        width: 100% !important;
+    }
+}
 .slick{
     display: flex;
+    width: 100%;
 }
 iframe{
     aspect-ratio: 16/9;
+}
+.wrapper{
+    width: 80%;
+    margin: 0 auto;
+}
+.wrapper .item{
+    aspect-ratio: 16/9;
+    width: 100%;
+}
+.slick img{
+    object-fit: contain;
+    border-radius: 10px;
+    width: 100%;
 }

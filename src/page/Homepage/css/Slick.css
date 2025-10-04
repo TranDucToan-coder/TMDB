@@ -1,8 +1,18 @@
 .slick-track{
     display: flex;
-    gap: 20px;
     border: none;
 }
 .slick-slide{
     border: none;
+}
+.slick-list{
+    display: flex;
+}
+.slick-next{
+    right: 1% !important;
+    z-index: 1000;
+}
+.slick-prev{
+    left: 1% !important;
+    z-index: 1000;
 }

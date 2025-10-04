@@ -12,30 +12,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import Item from "./item";
 //Type
-interface Movie {
-    id: number,
-    title: string,
-    original_title: string,
-    backdrop_path: string,
-    poster_path: string,
-    release_date: string,
-    popularity: number,
-    vote_average: number,
-    vote_count: number,
-    //Video
-    iso_639_1: string,
-    iso_3166_1: string,
-    key: string,
-    name: string,
-    official: boolean,
-    published_at: string,
-    site: string,
-    size: number,
-    type: string
-}
 interface MovieResponse {
     results: Movie[];
 }
+import type { Movie } from "../../type";
 interface Actor {
     id: number,
     gender: number,
@@ -77,6 +57,12 @@ const settingTrending = {
     speed: 1500,
     slidesToShow: 6,
     slidesToScroll: 1,
+    responsive : [{
+        breakpoint : 768,
+        settings: {
+            slidesToShow : 3
+        }
+    }]
 }
 const settingTrailer = {
     dots: false,
@@ -210,7 +196,6 @@ const Celebrities = () => {
     const getData = async() => {
         const response = await getActor(page);
         if(response){
-            console.log(response)
             setData(response);
         }
         else{
