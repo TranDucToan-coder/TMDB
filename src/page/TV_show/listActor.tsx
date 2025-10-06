@@ -39,7 +39,11 @@ const ListActor = ({ id }: props) => {
                     {dataActor.cast?.map((item) => (
                         <div className={style.item} key={item?.id}>
                             <div className={style.wrapper_image}>
-                                <img src={`https://image.tmdb.org/t/p/w500${item.profile_path}`} loading="lazy"></img>
+                                {item.profile_path ? (
+                                    <img src={`https://image.tmdb.org/t/p/w500${item.profile_path}`} loading="lazy"></img>
+                                ) : (
+                                    <img src={`./public/default_av.jpg`} loading="lazy"></img>
+                                )}
                             </div>
                             <p>{item.name}</p>
                         </div>

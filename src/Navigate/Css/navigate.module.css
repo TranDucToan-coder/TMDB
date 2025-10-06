@@ -3,14 +3,18 @@
         width: 100% !important;
         gap: 2%;
         font-size: 0.8rem;
-        justify-content: flex-start !important;
-    }   
+        justify-content: space-between !important;
+        padding: 2px;
+    }  
+    .top_navigate li:nth-child(5){
+        display: none;
+}
 }
 .top_navigate{
     width: 100%;
 }
 .top_navigate ul{
-    width: 90%;
+    width: 60%;
     display: flex;
     justify-content: center;
     margin: 2vh auto;
@@ -21,6 +25,9 @@
     width: auto;
     text-decoration: none;
     text-align: center;
+}
+.top_navigate li:nth-child(4){
+    margin-right: 10px;
 }
 li::marker{
     content: '';
@@ -38,6 +45,7 @@ li::marker{
     border-radius: 5px;
     border: 1px solid transparent;
     outline: none;
+    margin-right: 10px;
 }
 .top_navigate input:focus{
     border: 1px solid yellow;

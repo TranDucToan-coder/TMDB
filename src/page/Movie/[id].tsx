@@ -75,7 +75,11 @@ const DetailOfMovie = () => {
                             </div>
                         </div>
                     ) : (
-                        <button disabled>None finish</button>
+                        <div className={style.chapter}>
+                            <div className={style.listChapter}>
+                                <button disabled>None finish</button>
+                            </div>
+                        </div>
                     )}
 
                     {id ? (<TrailerFilm id={id}></TrailerFilm>) : (

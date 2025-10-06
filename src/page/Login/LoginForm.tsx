@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import style from './css/LoginForm.module.css'
-import { StateContext } from "../../Context/Context";
+import { StateContext } from "../../Plugin/Context/Context";
 import { useNavigate } from "react-router-dom";
 
 interface User {

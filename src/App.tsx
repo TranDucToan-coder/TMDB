@@ -11,7 +11,7 @@ import DetailOfTv from './page/TV_show/[id]'
 
 function App() {
   return (
-    <div>
+    <>
         <TopNavigate></TopNavigate>
         <Routes>
           <Route path='/' element={<Homepage></Homepage>}></Route>
@@ -22,7 +22,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}></Route>
           <Route path='/login/auth' element={<OTP/>}></Route>
         </Routes>
-    </div>
+    </>
   )
 }
 

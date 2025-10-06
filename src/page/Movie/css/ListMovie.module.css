@@ -1,4 +1,18 @@
-.wrapper{
+@media (max-width: 768px) {
+    .wrapper{
+        width: 100% !important;
+    }
+    .content .item{
+        width: 50% !important;
+    }
+    .content .item .title{
+        min-width: 25vw !important;
+    }
+    .content .item .title p{
+        width: 100% !important;
+    }
+}
+    .wrapper{
     width: 50%;
     margin: 0 auto;
 }
@@ -16,18 +30,30 @@
     justify-content: center;
 }
 .content .item .poster{
+    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 .content .item img{
     width: 50%;
 }
 .content .item .title{
-    max-height: 10vh;
+    max-height: 10vw;
     min-height: 10vh;
     max-width: 10vw;
     margin: 0 auto;
     overflow: hidden;
-        text-align: center;
+    text-align: center;
+}
+.btn_watchList{
+    background-color: rgba(0, 0, 0, 0.623);
+    position: absolute;
+    left: 25%;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
 }
