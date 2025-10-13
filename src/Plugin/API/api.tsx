@@ -1,3 +1,4 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const InstanceAxios = axios.create({
@@ -5,7 +6,7 @@ const InstanceAxios = axios.create({
   timeout: 3000,
   headers: {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTQ5MzMxNzk0MjFmMjZlOGY0ODgwNzMxOTQ0NTAzYyIsIm5iZiI6MTcyNDc1NzM1Ny45NDksInN1YiI6IjY2Y2RiNTZkODU1ZDMxYzhlYTQ1NGI1ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ADyNEQyUi84VzKuuloT9-W1Fju7KVYwYu9Mzd3NDCBA',
-    "Content-Type": 'application/json',
+    "Content-Type" : 'application/json',
   },
 })
 const InstanceAxiosEmbed = axios.create({
@@ -22,6 +23,16 @@ export async function getListMovie(page: number) {
     console.error("Lỗi khi lấy danh sách phim:", error);
     throw error;
   }
+}
+export function useNowPlayingMovies(page: number){
+  return useQuery({
+    queryKey : ['now_playing', page],
+    queryFn : async () => {
+      const res = await InstanceAxios.get(`/movie/now_playing?page=${page}`);
+      return res.data;
+    },
+    staleTime : 3600,
+  })
 }
 export async function getAllMovie() {
   try {
