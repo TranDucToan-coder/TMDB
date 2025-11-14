@@ -179,16 +179,15 @@ export async function getKeywordFilm(id: string) {
   }
 }
 //DetailTVShow
-export async function getDetailOfTv(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/tv/${id}`)
-    if (response) {
-      return (response.data)
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy chi tiết bộ phim:", error);
-    throw error;
-  }
+export const useDetailOftv = (id : string) => {
+  return useQuery({
+    queryKey: [`tvShow_${id}`, id],
+    queryFn: async () =>{
+      const response = await InstanceAxios.get(`/tv/${id}`)
+      return response;
+    },
+    refetchOnWindowFocus: false
+  })
 }
 export async function getKeywordTV(id: string) {
   try {

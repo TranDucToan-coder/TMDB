@@ -38,7 +38,9 @@ export interface Movie {
     site: string,
     size: number,
     type: string,
-    runtime: number
+    runtime: number,
+    //TvShow
+    number_of_episodes : number
 }
 export interface MovieResponse {
     results : Movie[],

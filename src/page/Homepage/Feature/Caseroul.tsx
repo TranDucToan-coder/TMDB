@@ -61,7 +61,7 @@ export const RenderCaseroulNowPlaying = ({ data }: { data: MovieResponse }) => {
         <Carousel plugins={[plugin.current]}>
             <CarouselContent className="transition-transform duration-500 ease-in-out">
                 {data?.results.map((movie) => (
-                    <CarouselItem className="basis-1/2 sm:basis-1/5">
+                    <CarouselItem key={movie.key} className="basis-1/2 sm:basis-1/5">
                         <Link to={`/Movie/${movie.id}`}>
                             <Item poster_path={movie.poster_path} title={movie.title} release_date={movie.release_date}></Item>
                         </Link>

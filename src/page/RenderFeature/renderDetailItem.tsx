@@ -1,9 +1,8 @@
-import { Button } from "../../components/ui/button"
 import { Render_AccodinServer } from "../../Plugin/Custom/Accordin_Server"
 import type { Movie, ResponseEmbed, ResponseMulti } from "../../type"
 
 interface RenderDetailItemProps {
-    data : Movie,
+    data?: Movie,
     embed : ResponseEmbed,
     handleWatch : (url: string) => void
 }
@@ -30,11 +29,12 @@ export const RenderDetailItem = ({ data, embed, handleWatch} : RenderDetailItemP
                     <p className="">{data?.overview}</p>
                 </div>
             </div>
-            <hr className="w-full p-2 mb-3 sm:w-1/2"></hr>
+            <hr className="w-full p-2 mb-3 sm:w-full"></hr>
             <div className="">
                 <div className="pl-8 pr-8 pb-12">
                     <Render_AccodinServer embed={embed} handleWatch={handleWatch}/>
                 </div>
+                <hr className="w-full p-2 mb-3 sm:w-full"></hr>
                 <div className="">
                     
                 </div>

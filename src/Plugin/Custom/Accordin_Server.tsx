@@ -27,9 +27,7 @@ export const Render_AccodinServer = ({ embed, handleWatch }: EmbedProps) => (
                     </div>
                 ) : (
                     <div className="">
-                        <div className="pl-8 pb-12">
-                            <button disabled>None finish</button>
-                        </div>
+                        <Button disabled>None finish</Button>
                     </div>
                 )}
             </AccordionContent>
