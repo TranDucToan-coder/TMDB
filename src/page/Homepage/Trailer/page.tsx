@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react"
 import { useTrailer } from "../../../Plugin/API/api"
-import { RenderCaseroulTrailer } from "../Feature/Caseroul"
+import { RenderCaseroulTrailer } from "../../RenderFeature/Caseroul"
 
 export const Trailer = () => {
     const [page, setPage] = useState<number>(1)

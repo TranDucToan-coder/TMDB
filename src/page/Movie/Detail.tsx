@@ -5,6 +5,7 @@ import { useMovie } from "../../Plugin/API/api"
 import { RenderDetailItem } from "../RenderFeature/renderDetailItem"
 // Types
 import { type Movie, type ResponseEmbed } from "../../type"
+import Keyword from "./FactKeyword"
 
 
 const DetailOfMovie = () => {
@@ -22,11 +23,14 @@ const DetailOfMovie = () => {
   if (isLoading) return <div>Loading...</div>
 
   return (
-    <RenderDetailItem
+    <div>
+      <RenderDetailItem
       data={responseDetailMovie as Movie}
       embed={responseDetailEmbed as ResponseEmbed}
       handleWatch={handleWatch}
     />
+    <Keyword id={id ?? ""}></Keyword>
+    </div>
   )
 }
 

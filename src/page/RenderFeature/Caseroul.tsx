@@ -5,11 +5,12 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
-} from "../../../components/ui/carousel"
-import type { MovieResponse, ResponseActor, ResponseVideo } from "../../../type"
-import Item from "../ItemHomePage"
+} from "../../components/ui/carousel"
+import type { Actor, MovieResponse, ResponseActor, ResponseVideo, Video } from "../../type"
+import Item from "../Homepage/ItemHomePage"
 import React from "react"
 import Autoplay from "embla-carousel-autoplay"
+import type { Movie } from "../../type"
 
 export const RenderCaseroul = ({
     data
@@ -19,7 +20,7 @@ export const RenderCaseroul = ({
     return (
         <Carousel className="w-full">
             <CarouselContent>
-                {data?.results.map((movie) => (
+                {data?.results.map((movie : Movie) => (
                     <CarouselItem key={movie.id}>
                         <Link to={`/Movie/${movie.id}`}>
                             <div className="relative group">
@@ -60,7 +61,7 @@ export const RenderCaseroulNowPlaying = ({ data }: { data: MovieResponse }) => {
     return (
         <Carousel plugins={[plugin.current]}>
             <CarouselContent className="transition-transform duration-500 ease-in-out">
-                {data?.results.map((movie) => (
+                {data?.results.map((movie : Movie) => (
                     <CarouselItem key={movie.key} className="basis-1/2 sm:basis-1/5">
                         <Link to={`/Movie/${movie.id}`}>
                             <Item poster_path={movie.poster_path} title={movie.title} release_date={movie.release_date}></Item>
@@ -82,7 +83,7 @@ export const RenderCaseroulTrailer = ({ data }: { data: ResponseVideo }) => {
     return (
         <Carousel>
             <CarouselContent>
-                {data?.map((item) => (
+                {data?.map((item : Video) => (
                     <CarouselItem key={item.key} className="basis-full h-70 sm:h-150">
                         <iframe
                             width="100%"
@@ -106,7 +107,7 @@ export const RenderCaseroulCelebrities = ({ data }: { data: ResponseActor }) => 
     return (
         <Carousel>
             <CarouselContent>
-                {data.cast.map((item) => (
+                {data.cast.map((item : Actor) => (
                     <CarouselItem>
                         <div className="flex flex-col">
                             <div className="">

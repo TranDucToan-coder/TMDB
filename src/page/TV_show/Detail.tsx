@@ -5,8 +5,6 @@ import { RenderDetailItem } from "../RenderFeature/renderDetailItem"
 // Types
 import { type Movie, type ResponseEmbed } from "../../type"
 import Keyword from "./FactKeyword"
-import { RenderKeyword } from "../../Plugin/Custom/Card_Keyword"
-
 
 const DetailTvShow = () => {
   const { id } = useParams<{ id: string }>()
@@ -19,22 +17,16 @@ const DetailTvShow = () => {
   const handleWatch = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer")
   }
-  console.log(responseDetailTvShow);
-  console.log(responseDetailMulti);
-  console.log(responseDetailEmbed);
-  if (isLoading) return <div>Loading...</div>
 
+  if (isLoading) return <div>Loading...</div>
   return (
     <div className="min-h-screen">
-    <RenderDetailItem
-      data={responseDetailTvShow as Movie}
-      embed={responseDetailEmbed as ResponseEmbed}
-      handleWatch={handleWatch}
-    />
-
-    <Keyword id={id ?? ""}>
-
-    </Keyword>
+      <RenderDetailItem
+        data={responseDetailTvShow as Movie}
+        embed={responseDetailEmbed as ResponseEmbed}
+        handleWatch={handleWatch}
+      />
+      <Keyword id={id ?? ""} />
     </div>
   )
 }

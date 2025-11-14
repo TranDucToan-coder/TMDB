@@ -68,9 +68,9 @@ const RenderCompanyProduction = ({ TvShow }: { TvShow: Movie }) => (
             <AccordionTrigger>PRODUCTION COMPANIES</AccordionTrigger>
             <AccordionContent>
                 <Card className="mt-4 bg-yellow-300">
-                    <CardContent className="flex flex-wrap gap-5">
+                    <CardContent className="flex flex-wrap justify-between w-full">
                         {TvShow.production_companies.map((company) => (
-                            <div className="w-1/2">
+                            <div className="w-1/2 flex items-center justify-center mb-4">
                                 <img src={`${URL_IMAGE_TMDB}/${company.logo_path}`} />
                             </div>
                         ))}
@@ -88,7 +88,7 @@ const RenderDirector = ({ TvShow }: { TvShow: Movie }) => (
             <AccordionTrigger>CREATOR</AccordionTrigger>
             <AccordionContent>
                 <Card>
-                {TvShow.created_by.map((item) => (
+                {TvShow?.created_by?.map((item) => (
                     <CardHeader>
                         <CardTitle>{item.name}</CardTitle>
                         <div className="w-1/4"><img src={`${URL_IMAGE_TMDB}/${item.profile_path}`}/></div>

@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { useDetailOftv, useKeywordDetailOftv } from "../../Plugin/API/api";
 import type { ResponseKeyword, Movie } from "../../type";
 //Css

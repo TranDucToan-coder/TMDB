@@ -11,7 +11,7 @@ import DetailTvShow from './page/TV_show/Detail'
 
 function App() {
   return (
-    <div className='h-auto'>
+    <div className='min-h-screen'>
         <TopNavigate></TopNavigate>
         <Routes>
           <Route path='/' element={<Homepage></Homepage>}></Route>

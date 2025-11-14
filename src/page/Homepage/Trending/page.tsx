@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNowPlayingMovies } from "../../../Plugin/API/api"
-import { RenderCaseroulNowPlaying } from "../Feature/Caseroul"
+import { RenderCaseroulNowPlaying } from "../../RenderFeature/Caseroul"
 import { Switch } from "../../../components/ui/switch"
 import { Label } from "../../../components/ui/label"
 

@@ -103,7 +103,7 @@ export interface Video {
 
 export type ResponseVideo = Video[]
 
-interface Actor {
+export interface Actor {
     id: number,
     name: string,
     character: string,

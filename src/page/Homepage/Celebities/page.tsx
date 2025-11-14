@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useActor } from "../../../Plugin/API/api";
+import { RenderCaseroulCelebrities } from "../../RenderFeature/Caseroul";
 
 export const Celebrities = () => {
     const [page, setPage] = useState<number>(1);
@@ -10,7 +11,7 @@ export const Celebrities = () => {
     return(
         <div className="">
             <h2>Celebrities</h2>
-
+            <RenderCaseroulCelebrities data={data}/>
         </div>
     )
 }

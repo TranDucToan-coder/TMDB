@@ -185,16 +185,16 @@ export async function getTrailerOfFilm(id: string) {
     throw error;
   }
 }
-export async function getKeywordFilm(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/movie/${id}/keywords`);
-    if (response) {
+export const getKeywordOfMovie = (id: string) => {
+  return useQuery({
+    queryKey: [`keyword_movie_${id}`, id],
+    queryFn: async () =>{
+      if(!id) return null;
+      const response = await InstanceAxios.get(`/movie/${id}/keywords`)
       return response.data;
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy keyword bộ phim:", error);
-    throw error;
-  }
+    },
+    refetchOnWindowFocus: false
+  })
 }
 //DetailTVShow
 export const useDetailOftv = (id : string) => {
