@@ -14,15 +14,17 @@ interface EmbedProps {
 export const Render_AccodinServer = ({ embed, handleWatch }: EmbedProps) => (
     <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
-            <AccordionTrigger>SERVER</AccordionTrigger>
+            <AccordionTrigger className="font-bold">SERVER</AccordionTrigger>
             <AccordionContent>
                 {embed?.episodes?.[0]?.server_data?.[0]?.link_embed ? (
-                    <div className="">
-                        <div><p>SERVER: {embed.episodes[0].server_name}</p></div>
-                        <div className="">
-                            <Button onClick={() => handleWatch(embed.episodes[0].server_data[0].link_embed)} className="border rounded-xl hover:border-red-300">
-                                Xem phim
-                            </Button>
+                    <div className="flex flex-col gap-4">
+                        <p className="font-semibold">SERVER: {embed.episodes[0].server_name}</p>
+                        <div className="flex flex-wrap justify-start gap-2">
+                            {embed.episodes[0].server_data.map((item, index) => (
+                                <Button onClick={() => handleWatch(item.link_embed)} className="border rounded-xs hover:bg-red-200 transition-all duration-300">
+                                    Tập {index + 1}
+                                </Button>
+                            ))}
                         </div>
                     </div>
                 ) : (

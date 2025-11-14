@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useMulti, useEmbed } from "../../Plugin/API/api"
-import { useMovie } from "./hook/MovieById"
+import { useMovie } from "../../Plugin/API/api"
 // Components
 import { RenderDetailItem } from "../RenderFeature/renderDetailItem"
 // Types

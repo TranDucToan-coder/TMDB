@@ -9,11 +9,9 @@ const ListTV_Show = () => {
 
     const { data } = useTvShow(page);
 
-    const ResponseData: MovieResponse = useMemo(() => (
-        data || []
-    ), [])
-
-    const totalPages = ResponseData.total_pages
+    const ResponseData: MovieResponse = data
+    console.log(ResponseData);
+    const totalPages = ResponseData?.total_pages
 
     return (
         <div className="w-full m-auto sm:w-2/4">

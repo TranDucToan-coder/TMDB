@@ -1,3 +1,4 @@
+import { Progress } from "@radix-ui/react-progress";
 import type { Movie, MovieResponse } from "../../type"
 import { MovieItem, TvShowItem } from "./RenderItem";
 
@@ -12,7 +13,7 @@ export const RenderListItemMovie = ({ data }: { data: MovieResponse }) => {
                         </div>
                     ))}
                 </div>) : (
-                <p>Loading</p>
+                <Progress value={30}></Progress>
             )}
         </div>
     )
@@ -29,7 +30,7 @@ export const RenderListItemTvShow = ({ data }: { data: MovieResponse }) => {
                         </div>
                     ))}
                 </div>) : (
-                <p>Loading</p>
+                <Progress value={50}></Progress>
             )}
         </div>
     )

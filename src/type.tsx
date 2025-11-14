@@ -3,7 +3,7 @@ export interface Movie {
     imdb_id: string,
     title: string,
     original_title: string,
-    original_name:  string,
+    original_name: string,
     backdrop_path: string,
     poster_path: string,
     release_date: string,
@@ -40,40 +40,51 @@ export interface Movie {
     type: string,
     runtime: number,
     //TvShow
-    number_of_episodes : number
+    number_of_episodes: number
+    number_of_seasons: number
+    next_episode_to_air: {
+        air_date: string,
+        episode_number: number
+    }
+    created_by: [{
+        gender: number
+        name: string
+        original_name: string
+        profile_path: string
+    }]
 }
 export interface MovieResponse {
-    results : Movie[],
-    total_pages? : number,
-    total_results? : number,
+    results: Movie[],
+    total_pages?: number,
+    total_results?: number,
 }
 //media_type
 export interface Multi {
-    id : string,
+    id: string,
     media_type: string,
 }
-export interface ResponseMulti{
+export interface ResponseMulti {
     results: Multi[]
 }
 //embed
 export interface ServerData {
-  name: string;
-  slug: string;
-  filename: string;
-  link_embed: string;
-  link_m3u8: string;
+    name: string;
+    slug: string;
+    filename: string;
+    link_embed: string;
+    link_m3u8: string;
 }
 export interface Embed {
     server_name: string;
     server_data: ServerData[];
 }
 export interface ResponseEmbed {
-    episodes : Embed[]
+    episodes: Embed[]
 }
 
-export interface TMDB{
+export interface TMDB {
     id: string,
-    season ?: number,
+    season?: number,
     type: string
 }
 
@@ -90,22 +101,33 @@ export interface Video {
     runtime: number
 }
 
-export type ResponseVideo = Video[] 
+export type ResponseVideo = Video[]
 
 interface Actor {
     id: number,
     name: string,
     character: string,
-    profile_path : string
+    profile_path: string
 }
 export interface ResponseActor {
-    cast : Actor[]
+    cast: Actor[]
 }
 interface Keyword {
-    id : number,
-    name : string
+    id: number,
+    name: string
 }
 export interface ResponseKeyword {
-    keywords : Keyword[];
-    results : Movie[];
+    keywords: Keyword[];
+    results: Movie[];
+}
+
+export interface Episions {
+    actor: []
+    director: []
+    quality: string
+    status: string
+    episode_current: string
+    episode_total: string
+    time: string
+    year: number
 }

@@ -11,7 +11,7 @@ import DetailTvShow from './page/TV_show/Detail'
 
 function App() {
   return (
-    <>
+    <div className='h-auto'>
         <TopNavigate></TopNavigate>
         <Routes>
           <Route path='/' element={<Homepage></Homepage>}></Route>
@@ -22,7 +22,7 @@ function App() {
           <Route path='/login' element={<LoginPage/>}></Route>
           <Route path='/login/auth' element={<OTP/>}></Route>
         </Routes>
-    </>
+    </div>
   )
 }
 

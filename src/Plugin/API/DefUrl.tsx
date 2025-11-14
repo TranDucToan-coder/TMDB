@@ -8,3 +8,5 @@ export const InstanceAxios = axios.create({
     "Content-Type" : 'application/json',
   },
 })
+
+export const URL_IMAGE_TMDB = "https://image.tmdb.org/t/p/w200"

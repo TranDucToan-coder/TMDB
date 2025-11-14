@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 interface PropsItem {
     id: number,
     poster_path: string,
-    title: string
+    title: string,
 }
 
 export const MovieItem = ({ id, poster_path, title }: PropsItem) => {

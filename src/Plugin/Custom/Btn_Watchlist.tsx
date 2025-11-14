@@ -1,7 +1,6 @@
 import { useState } from "react";
 import type { Movie } from "../../type";
-import style from './css/Watchlist.module.css'
-import { useMovie } from "../../page/Movie/hook/MovieById";
+import { useMovie } from "../../Plugin/API/api";
 
 interface Item_Props {
     id: number

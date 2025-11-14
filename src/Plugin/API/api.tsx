@@ -18,7 +18,24 @@ export function useNowPlayingMovies(page: number){
     staleTime : 3600,
   })
 }
-
+export const useMovie = (id: string) => {
+  return useQuery({
+    queryKey: ["detail_movie", id],
+    queryFn: async () => {
+      if (!id) return;
+      try {
+        const res = await InstanceAxios.get(`/movie/${id}`);
+        return res.data;
+      } catch (error: any) {
+        if (error.response?.status === 404) {
+          return null;
+        }
+        throw error;
+      }
+    },
+    refetchOnWindowFocus: false
+  })
+}
 export async function getAllMovie() {
   try {
     const firstResponse = await InstanceAxios.get(`/movie/now_playing?page=1`);
@@ -141,6 +158,7 @@ export const useEmbed = (id: string, type: string) => {
     queryKey: ["embed", id, type],
     queryFn : async() => {
         const response = await InstanceAxiosEmbed.get(`/${type}/${id}`)
+        console.log(type, id);
         return response.data;
     }
   })
@@ -183,22 +201,23 @@ export const useDetailOftv = (id : string) => {
   return useQuery({
     queryKey: [`tvShow_${id}`, id],
     queryFn: async () =>{
+      if(!id) return null;
       const response = await InstanceAxios.get(`/tv/${id}`)
-      return response;
+      return response.data;
     },
     refetchOnWindowFocus: false
   })
 }
-export async function getKeywordTV(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/tv/${id}/keywords`);
-    if (response) {
+export const useKeywordDetailOftv = (id : string) => {
+  return useQuery({
+    queryKey: [`keyword_tvShow_${id}`, id],
+    queryFn: async () =>{
+      if(!id) return null;
+      const response = await InstanceAxios.get(`/tv/${id}/keywords`)
       return response.data;
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy keyword bộ phim:", error);
-    throw error;
-  }
+    },
+    refetchOnWindowFocus: false
+  })
 }
 export async function getListActorOfTv(id: string) {
   try {

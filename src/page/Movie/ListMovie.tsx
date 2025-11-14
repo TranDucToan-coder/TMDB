@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState,  useMemo } from "react";
 import { useNowPlayingMovies } from "../../Plugin/API/api";
 import { RenderListItemMovie } from "../RenderFeature/renderListMovie";
 import { RenderPagination } from "../../Plugin/Paginate/paginate";

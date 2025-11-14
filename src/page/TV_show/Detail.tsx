@@ -4,28 +4,38 @@ import { useMulti, useEmbed, useDetailOftv } from "../../Plugin/API/api"
 import { RenderDetailItem } from "../RenderFeature/renderDetailItem"
 // Types
 import { type Movie, type ResponseEmbed } from "../../type"
+import Keyword from "./FactKeyword"
+import { RenderKeyword } from "../../Plugin/Custom/Card_Keyword"
 
 
 const DetailTvShow = () => {
   const { id } = useParams<{ id: string }>()
 
   const { data: responseDetailTvShow, isLoading } = useDetailOftv(id ?? "")
-  const { data: responseDetailMulti } = useMulti(responseDetailTvShow?.data ?? "")
+  const { data: responseDetailMulti } = useMulti(responseDetailTvShow?.original_name ?? "")
   const mediaType = responseDetailMulti?.results?.[0]?.media_type
   const { data: responseDetailEmbed } = useEmbed(id ?? "", mediaType)
 
   const handleWatch = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer")
   }
-
+  console.log(responseDetailTvShow);
+  console.log(responseDetailMulti);
+  console.log(responseDetailEmbed);
   if (isLoading) return <div>Loading...</div>
 
   return (
+    <div className="min-h-screen">
     <RenderDetailItem
-      data={responseDetailTvShow?.data as Movie}
+      data={responseDetailTvShow as Movie}
       embed={responseDetailEmbed as ResponseEmbed}
       handleWatch={handleWatch}
     />
+
+    <Keyword id={id ?? ""}>
+
+    </Keyword>
+    </div>
   )
 }
 

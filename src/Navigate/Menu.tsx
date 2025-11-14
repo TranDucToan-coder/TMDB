@@ -11,13 +11,13 @@ import {
 } from "../components/ui/navigation-menu"
 
 const Menu = () => (
-    <NavigationMenu>
+    <NavigationMenu className='z-1000'>
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>Menu</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <NavigationMenuLink><Link to={'/danh_sach_phim/movie'}>Phim lẻ</Link></NavigationMenuLink>
-            <NavigationMenuLink><Link to={'/danh_sach_phim/tv'}>Phim bộ</Link></NavigationMenuLink>
+            <NavigationMenuLink href='/danh_sach_phim/movie' className='w-50'>Phim lẻ</NavigationMenuLink>
+            <NavigationMenuLink href='/danh_sach_phim/tv'>Phim bộ</NavigationMenuLink>
           </NavigationMenuContent>
         </NavigationMenuItem>
       </NavigationMenuList>
