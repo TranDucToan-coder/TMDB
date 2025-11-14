@@ -1,3 +1,5 @@
+import { Button } from "../../components/ui/button"
+import { Render_AccodinServer } from "../../Plugin/Custom/Accordin_Server"
 import type { Movie, ResponseEmbed, ResponseMulti } from "../../type"
 
 interface RenderDetailItemProps {
@@ -28,25 +30,10 @@ export const RenderDetailItem = ({ data, embed, handleWatch} : RenderDetailItemP
                     <p className="">{data?.overview}</p>
                 </div>
             </div>
-            <hr className="w-1/4 mb-3"></hr>
+            <hr className="w-full p-2 mb-3 sm:w-1/2"></hr>
             <div className="">
-                <div className="">
-                    {embed?.episodes?.[0]?.server_data?.[0]?.link_embed ? (
-                        <div className="">
-                            <div><p>SERVER: {embed.episodes[0].server_name}</p></div>
-                            <div className="">
-                                <button onClick={() => handleWatch(embed.episodes[0].server_data[0].link_embed)} className="border rounded-xl hover:border-red-300">
-                                    Xem phim
-                                </button>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="">
-                            <div className="{style.listChapter}">
-                                <button disabled>None finish</button>
-                            </div>
-                        </div>
-                    )}
+                <div className="pl-8 pr-8 pb-12">
+                    <Render_AccodinServer embed={embed} handleWatch={handleWatch}/>
                 </div>
                 <div className="">
                     

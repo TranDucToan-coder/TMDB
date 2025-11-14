@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useNowPlayingMovies } from "../../Plugin/API/api";
 import style from './css/ListMovie.module.css'
-import RenderListMovie from "../Hooks/renderListMovie";
+import RenderListMovie from "../RenderFeature/renderListMovie";
 import { RenderPagination } from "../../Plugin/Paginate/paginate";
 import type { MovieResponse } from "../../type";
 

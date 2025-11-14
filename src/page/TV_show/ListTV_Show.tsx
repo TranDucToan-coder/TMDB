@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTvShow } from "../../Plugin/API/api";
-import RenderListMovie from "../Hooks/renderListMovie";
+import RenderListMovie from "../RenderFeature/renderListMovie";
 import { RenderPagination } from "../../Plugin/Paginate/paginate";
 
 const ListTV_Show = () => {
