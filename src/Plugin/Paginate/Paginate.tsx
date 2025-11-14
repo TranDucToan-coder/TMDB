@@ -1,25 +1,87 @@
-import React from "react";
-import type { MovieResponse } from "../../type"
-import style from './css/Paginate.module.css'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../../components/ui/pagination"
 
-interface pageProps {
-    page: number,
-    setPage : React.Dispatch<React.SetStateAction<number>>
-    data : MovieResponse | null
+interface PaginationProps {
+  page: number
+  setPage: (page: number) => void
+  totalPages?: number
 }
-const Paginate = ({page, setPage, data} : pageProps) => {
-    const nextPage = () => {
-        setPage(prev => prev + 1)
-    }
-    const prevPage = () => {
-        setPage(prev => prev - 1)
-    }
-    return (
-        <div className={style.wrapper}>
-            {page <= 1 ? (<button disabled onClick={() => prevPage()}>Prev</button>) : (<button onClick={() => prevPage()}>Prev</button>)}
-            <button style={{backgroundColor : "green"}}>{page}</button><button>{page + 1}</button>
-            {data && page >= data?.total_pages ? (<button disabled onClick={() => nextPage()}>Next</button>) : (<button onClick={() => nextPage()}>Next</button>)}
-        </div>
-    )
+
+export function RenderPagination({ page, setPage, totalPages = 10 }: PaginationProps) {
+  const maxVisible = 3
+  const startPage = Math.max(1, page - 1)
+  const endPage = Math.min(totalPages, startPage + maxVisible - 1)
+
+  const handlePrev = () => {
+    if (page > 1) setPage(page - 1)
+  }
+
+  const handleNext = () => {
+    if (page < totalPages) setPage(page + 1)
+  }
+
+  return (
+    <Pagination className="w-1/2 mb-8 p-5">
+      <PaginationContent className="w-full flex justify-around">
+        <PaginationItem>
+          <PaginationPrevious
+            size={20}
+            href="#"
+            onClick={(e) => { e.preventDefault(); handlePrev(); }}
+          />
+        </PaginationItem>
+        {startPage > 1 && (
+          <>
+            <PaginationItem
+            >
+              <PaginationLink size={20} href="#" onClick={(e) => { e.preventDefault(); setPage(1) }}>
+                1
+              </PaginationLink>
+            </PaginationItem>
+            {startPage > 2 && <PaginationEllipsis />}
+          </>
+        )}
+        {Array.from({ length: endPage - startPage + 1 }, (_, i) => {
+          const p = startPage + i
+          return (
+            <PaginationItem key={p}>
+              <PaginationLink
+                size={20}
+                href="#"
+                isActive={p === page}
+                onClick={(e) => { e.preventDefault(); setPage(p); }}
+              >
+                {p}
+              </PaginationLink>
+            </PaginationItem>
+          )
+        })}
+        {endPage < totalPages && (
+          <>
+            {endPage < totalPages - 1 && <PaginationEllipsis />}
+            <PaginationItem className="w-3 h-4 border p-5 flex justify-center focus:border-amber-200">
+              <PaginationLink size={20} href="#" onClick={(e) => { e.preventDefault(); setPage(totalPages); }}>
+                {totalPages}
+              </PaginationLink>
+            </PaginationItem>
+          </>
+        )}
+        <PaginationItem>
+          <PaginationNext
+            size={20}
+            href="#"
+            onClick={(e) => { e.preventDefault(); handleNext(); }}
+          />
+        </PaginationItem>
+
+      </PaginationContent>
+    </Pagination>
+  )
 }
-export default Paginate

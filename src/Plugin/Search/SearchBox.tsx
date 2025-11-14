@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import type { Movie, MovieResponse } from "../../type";
 import { getAllMovie} from "../API/api";
-import Item from "../../page/Homepage/item";
+import Item from "../../page/Homepage/ItemHomePage";
 
 interface SearchBox_props {
     value : string,

@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import type { MovieResponse, Movie } from "../../type";
-import { getDetailOfFilm } from "../API/api";
+import { useState } from "react";
+import type { Movie } from "../../type";
 import style from './css/Watchlist.module.css'
+import { useMovie } from "../../page/Movie/hook/MovieById";
 
 interface Item_Props {
     id: number
@@ -12,14 +12,14 @@ const Btn_WatchList = ({ id }: Item_Props) => {
         const raw = localStorage.getItem("watchList");
         return raw ? JSON.parse(raw) : [];
     });
-    let convertNumber = id;
-    let convertToString = convertNumber.toString();
+    const convertNumber = id.toString();
+    const {data: responseDetailMovie} = useMovie(convertNumber)
 
     const BtnAdd = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         e.stopPropagation()
         if (user) {
-            const response = await getDetailOfFilm(convertToString);
+            const response = await responseDetailMovie;
             if (response) {
                 const exist = list.some(item => item.id === response.id)
                 if (!exist) {
@@ -40,16 +40,16 @@ const Btn_WatchList = ({ id }: Item_Props) => {
     }
     const checkExist = list.some(item => item.id === id);
     return (
-        <span>
+        <div>
             {user ? (
-                <div>
+                <div className="w-1/3">
                     {checkExist ? (
-                        <button onClick={(e) => BtnAdd(e)} className={style.btn_watchList}>✔</button>) : (
-                        <button onClick={(e) => BtnAdd(e)} className={style.btn_watchList}>+</button>)}
+                        <button onClick={(e) => BtnAdd(e)} className="w-1/3 p-3 border flex justify-center bg-gray-500 cursor-pointer">✔</button>) : (
+                        <button onClick={(e) => BtnAdd(e)} className="w-1/3 p-3 border flex justify-center  bg-gray-500 cursor-pointer">+</button>)}
                 </div>
             ) : (
-                <button onClick={(e) => BtnAdd(e)} className={style.btn_watchList}>+</button>)}
-        </span>
+                <button onClick={(e) => BtnAdd(e)} className="w-1/3 p-3 border flex justify-center bg-gray-500 cursor-pointer">+</button>)}
+        </div>
     )
 }
 export default Btn_WatchList

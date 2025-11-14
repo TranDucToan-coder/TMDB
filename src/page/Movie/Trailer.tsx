@@ -35,7 +35,7 @@ const TrailerFilm = ({ id }: props) => {
             setData(response)
         }
     }
-    const lenght = data?.results.length;
+    const lenght = data?.length;
     useEffect(() => {
         getData();
     }, [id])
@@ -43,16 +43,6 @@ const TrailerFilm = ({ id }: props) => {
         <div className={style.wrapper}>
             <h2>Trailer: <span>{lenght} video</span></h2>
             <Slider {...setting} className={style.slick}>
-                {data?.results?.map(item => (
-                <iframe key={item.key} className={style.item}
-                width="100%"
-                height="100%"
-                src={`https://www.youtube-nocookie.com/embed/${item.key}`}
-                title="YouTube trailer"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen></iframe>
-            ))}
             </Slider>
         </div>
     )

@@ -42,8 +42,8 @@ export interface Movie {
 }
 export interface MovieResponse {
     results : Movie[],
-    total_pages : number,
-    total_results : number,
+    total_pages? : number,
+    total_results? : number,
 }
 //media_type
 export interface Multi {
@@ -68,12 +68,14 @@ export interface Embed {
 export interface ResponseEmbed {
     episodes : Embed[]
 }
+
 export interface TMDB{
     id: string,
     season ?: number,
     type: string
 }
-interface Video {
+
+export interface Video {
     iso_639_1: string,
     iso_3166_1: string,
     key: string,
@@ -85,9 +87,9 @@ interface Video {
     type: string,
     runtime: number
 }
-export interface ResponseVideo {
-    results : Video[];
-}
+
+export type ResponseVideo = Video[] 
+
 interface Actor {
     id: number,
     name: string,

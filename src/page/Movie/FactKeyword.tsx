@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { getDetailOfFilm, getKeywordFilm } from "../../Plugin/API/api";
+import { getKeywordFilm } from "../../Plugin/API/api";
 import type { ResponseKeyword, Movie } from "../../type";
 //Css
 import style from '../Homepage/css/Keyword.module.css'
+import { useMovie } from "./hook/MovieById";
 //type
 interface Props {
     id: string
@@ -10,9 +11,10 @@ interface Props {
 const Keyword = ({ id }: Props) => {
     const [data, setData] = useState<ResponseKeyword | null>(null);
     const [dataMovie, setDataMovie] = useState<Movie | null>(null);
+    const {data: responseDetailMovie} = useMovie(id ?? "")
     const getData = async () => {
         const response = await getKeywordFilm(id);
-        const responseMovie = await getDetailOfFilm(id);
+        const responseMovie = await responseDetailMovie
         if (response) {
             setData(response);
         }
