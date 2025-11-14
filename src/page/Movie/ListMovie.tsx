@@ -16,7 +16,7 @@ const ListMovie = () => {
     const totalPages = ResponseData.total_pages
 
     return (
-        <div className={style.wrapper}>
+        <div className="w-full m-auto sm:w-2/4">
             <RenderListMovie data={data}/>
             <RenderPagination page={page} setPage={setPage} totalPages={totalPages}></RenderPagination>
         </div>
