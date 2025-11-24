@@ -10,6 +10,7 @@ import {
   NavigationMenuTrigger,
 } from "../components/ui/navigation-menu"
 import { useEffect } from 'react'
+import { Button } from '../components/ui/button'
 
 const Menu = () => (
   <NavigationMenu className='z-1000'>
@@ -26,15 +27,15 @@ const Menu = () => (
 )
 
 interface UserProps {
-  handleLogOut : () => void
+  handleLogOut: () => void
 }
-const MenuProfile = ({handleLogOut} : UserProps) => (
+const MenuProfile = ({ handleLogOut }: UserProps) => (
   <NavigationMenu className='z-1000'>
     <NavigationMenuList>
       <NavigationMenuItem>
         <NavigationMenuTrigger>Profile</NavigationMenuTrigger>
         <NavigationMenuContent>
-          <NavigationMenuLink href='/' className='w-50'>Personal Information</NavigationMenuLink>
+          <NavigationMenuLink href='/manageAcc' className='w-50'>Personal Information</NavigationMenuLink>
           <NavigationMenuLink href='/' onClick={handleLogOut}>Log out</NavigationMenuLink>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -51,7 +52,7 @@ const TopNavigate = () => {
   }
   useEffect(() => {
 
-  },[user])
+  }, [user])
   return (
     <div className="w-full flex flex-row justify-between flex-wrap gap-2 items-center m-auto p-4 mb-4 sm:w-2/4">
       <div className="w-auto">
@@ -66,11 +67,11 @@ const TopNavigate = () => {
         <Input className="w-full" />
       </div>
       {user ? (
-        <div><MenuProfile handleLogOut={handleLogOut}/></div>
+        <div><MenuProfile handleLogOut={handleLogOut} /></div>
       ) : (
-        <div>
+        <Button className='bg-black hover:bg-gray-800'>
           <Link to={'/login'}>Sign in</Link>
-        </div>
+        </Button>
       )}
       <div>
         <ModeToggle />

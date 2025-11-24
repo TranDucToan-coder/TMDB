@@ -27,7 +27,6 @@ const LoginForm = ({state, setState} : StateProps) => {
 
     const toggleState = () => {
         setState(!state)
-        console.log(state);
     }
     //Submit
     const handleSubmit = async () => {
@@ -37,15 +36,14 @@ const LoginForm = ({state, setState} : StateProps) => {
                 console.log("Login thành công")
                 localStorage.setItem("user", JSON.stringify(user));
                 navigate("/")
+                window.location.reload()
             }
         }
         else {
             console.log("Vui lòng kiểm tra lại thông tin")
         }
     }
-    useEffect(() => {
-        setUser({username: "ductoantran17", password:"123456"})
-    },[])
+
     return (
         <Render_LoginForm
             handleChangePassword={handleChangePassword}

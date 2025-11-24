@@ -16,12 +16,12 @@ export const Render_LoginForm = ({handleChangeUsername, handleChangePassword, ha
         <CardHeader className="m-5"><Label className="block text-4xl font-bold text-center">Login</Label></CardHeader>
         <CardContent className="w-full mb-4">
             <div className="relative w-full">
-                <Input className="w-full h-12 border-t-0 border-l-0 border-r-0 border-amber-100 focus:outline-0" onChange={handleChangeUsername} value="ductoantran17"/>
+                <Input className="w-full h-12 border-t-0 border-l-0 border-r-0 border-amber-100 focus:outline-0" onChange={handleChangeUsername}/>
                 <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div></CardContent>
         <CardContent className="w-full mb-4">
             <div className="relative">
-                <Input type="password" className="w-full h-12 border-t-0 border-l-0 border-r-0 border-amber-100 focus:outline-0" onChange={handleChangePassword} value={"123456"}/>
+                <Input type="password" className="w-full h-12 border-t-0 border-l-0 border-r-0 border-amber-100 focus:outline-0" onChange={handleChangePassword}/>
                 <Key className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
         </CardContent>
