@@ -47,7 +47,7 @@ const TopNavigate = () => {
   const userString = localStorage.getItem('user');
   const user = userString ? JSON.parse(userString) : null;
 
-  const handleLogOut = () => {
+  const handleLogOut = () => { 
     localStorage.removeItem("user")
   }
   useEffect(() => {
