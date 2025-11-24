@@ -10,7 +10,7 @@ interface StateProps {
     state: boolean,
     setState: (state: boolean) => void
 }
-const LoginForm = ({state, setState} : StateProps) => {
+const LoginForm = ({ state, setState }: StateProps) => {
     const navigate = useNavigate();
     //AccTest
     const account = { username: "ductoantran17", password: "123456" };
@@ -45,12 +45,14 @@ const LoginForm = ({state, setState} : StateProps) => {
     }
 
     return (
-        <Render_LoginForm
-            handleChangePassword={handleChangePassword}
-            handleChangeUsername={handleChangeUsername}
-            handleSubmit={handleSubmit}
-            toggleState={toggleState}
-        />
+        <div className="flex items-center justify-center h-[85vh]">
+            <Render_LoginForm
+                handleChangePassword={handleChangePassword}
+                handleChangeUsername={handleChangeUsername}
+                handleSubmit={handleSubmit}
+                toggleState={toggleState}
+            />
+        </div>
     )
 }
 export default LoginForm

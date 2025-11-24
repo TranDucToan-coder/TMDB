@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 
 const Profile = () => {
     const userString = localStorage.getItem('user');

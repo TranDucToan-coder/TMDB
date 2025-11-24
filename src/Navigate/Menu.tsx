@@ -35,7 +35,7 @@ const MenuProfile = ({ handleLogOut }: UserProps) => (
       <NavigationMenuItem>
         <NavigationMenuTrigger>Profile</NavigationMenuTrigger>
         <NavigationMenuContent>
-          <NavigationMenuLink href='/manageAcc' className='w-50'>Personal Information</NavigationMenuLink>
+          <NavigationMenuLink href='/profile' className='w-50'>Personal Information</NavigationMenuLink>
           <NavigationMenuLink href='/' onClick={handleLogOut}>Log out</NavigationMenuLink>
         </NavigationMenuContent>
       </NavigationMenuItem>
