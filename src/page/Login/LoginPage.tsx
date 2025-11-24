@@ -1,15 +1,13 @@
-import { useContext } from "react";
+import { useState } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { StateContext } from "../../Plugin/Context/Context";
 
 const LoginPage = () => {
-    const context = useContext(StateContext);
-    if (!context) return null;
-    const { state } = context;
+    const [state, setState] = useState<boolean>(true)
+
     return (
         <div>
-            {state ? (<LoginForm />) : (<RegisterForm />)}
+            {state ? (<LoginForm setState={setState} state={state}/>) : (<RegisterForm state={state} setState={setState}/>)}
         </div>
     )
 }

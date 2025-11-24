@@ -1,5 +1,5 @@
 import { Button } from "../../components/ui/button"
-import { Render_AccodinServer } from "../../Plugin/Custom/Accordin_Server"
+import { Render_AccodinServer } from "../../Plugin/Custom_Component/Accordin_Server"
 import type { Movie, ResponseEmbed, ResponseMulti } from "../../type"
 
 interface RenderDetailItemProps {

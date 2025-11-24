@@ -1,6 +1,6 @@
 import { Progress } from "@radix-ui/react-progress";
 import type { Movie, MovieResponse } from "../../type"
-import { MovieItem, TvShowItem } from "./RenderItem";
+import { MovieItem, TvShowItem } from "./renderItem";
 
 export const RenderListItemMovie = ({ data }: { data: MovieResponse }) => {
     return (

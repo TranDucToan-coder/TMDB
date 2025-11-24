@@ -9,4 +9,9 @@ export const InstanceAxios = axios.create({
   },
 })
 
+export const InstanceAxiosEmbed = axios.create({
+  baseURL: 'https://phimapi.com/tmdb/',
+  timeout: 3000,
+})
+
 export const URL_IMAGE_TMDB = "https://image.tmdb.org/t/p/w200"

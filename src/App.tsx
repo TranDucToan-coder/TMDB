@@ -2,12 +2,14 @@ import {Routes, Route } from 'react-router-dom'
 import './App.css'
 import Homepage from './page/Homepage/page'
 import TopNavigate from './Navigate/Menu'
-import DetailOfMovie from './page/Movie/Detail'
+import DetailOfMovie from './page/DetailItem/Detail_Movie'
 import LoginPage from './page/Login/LoginPage'
 import OTP from './page/Login/OTP'
 import ListMovie from './page/Movie/ListMovie'
 import ListTV_Show from './page/TV_show/ListTV_Show'
-import DetailTvShow from './page/TV_show/Detail'
+import DetailTvShow from './page/DetailItem/Detail_TvShow'
+import { Middleware } from './auth/AuthUser'
+import Profile from './page/Profile/profile'
 
 function App() {
   return (
@@ -21,6 +23,10 @@ function App() {
           <Route path='/tv/:id' element={<DetailTvShow/>}></Route>
           <Route path='/login' element={<LoginPage/>}></Route>
           <Route path='/login/auth' element={<OTP/>}></Route>
+          <Route element={<Middleware/>}>
+              <Route path='/profile' element={<Profile/>}></Route>
+              <Route path='/'></Route>
+          </Route>
         </Routes>
     </div>
   )

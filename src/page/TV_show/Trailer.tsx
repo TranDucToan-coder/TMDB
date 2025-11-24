@@ -28,15 +28,14 @@ const TrailerFilm = ({ id }: props) => {
             setData(response)
         }
     }
-    const lenght = data?.results.length;
     useEffect(() => {
         getData();
     }, [id])
     return (
         <div className={style.wrapper}>
-            <h2>Trailer: <span>{lenght} video</span></h2>
+            <h2>Trailer: <span>Video</span></h2>
             <Slider {...setting} className={style.slick}>
-                {data?.results?.map(item => (
+                {data?.map(item => (
                 <iframe key={item.key} className={style.item}
                 width="100%"
                 height="100%"

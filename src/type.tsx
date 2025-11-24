@@ -42,6 +42,8 @@ export interface Movie {
     //TvShow
     number_of_episodes: number
     number_of_seasons: number
+    episode_current: string
+    episode_total: string
     next_episode_to_air: {
         air_date: string,
         episode_number: number
@@ -78,7 +80,7 @@ export interface Embed {
     server_name: string;
     server_data: ServerData[];
 }
-export interface ResponseEmbed {
+export type ResponseEmbed = {
     episodes: Embed[]
 }
 
@@ -89,16 +91,16 @@ export interface TMDB {
 }
 
 export interface Video {
-    iso_639_1: string,
-    iso_3166_1: string,
+    iso_639_1?: string,
+    iso_3166_1?: string,
     key: string,
-    name: string,
-    official: boolean,
-    published_at: string,
-    site: string,
-    size: number,
-    type: string,
-    runtime: number
+    name?: string,
+    official?: boolean,
+    published_at?: string,
+    site?: string,
+    size?: number,
+    type?: string,
+    runtime?: number
 }
 
 export type ResponseVideo = Video[]
@@ -109,9 +111,13 @@ export interface Actor {
     character: string,
     profile_path: string
 }
-export interface ResponseActor {
-    cast: Actor[]
+export type ResponseActor = {
+    results : Actor[]
+    page?: number
+    total_pages?: number
+    total_results?: number
 }
+    
 interface Keyword {
     id: number,
     name: string

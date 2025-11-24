@@ -1,17 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useActor } from "../../../Plugin/API/api";
-import { RenderCaseroulCelebrities } from "../../RenderFeature/Caseroul";
+import { RenderCaseroulCelebrities } from "../../RenderFeature/renderCaseroul";
+import type { ResponseActor } from "../../../type";
+import { RenderErrorPage } from "../../../Plugin/Custom_Page/ErrorPage";
 
 export const Celebrities = () => {
-    const [page, setPage] = useState<number>(1);
+    const [page, setPage] = useState<number>(2);
     
-    const { data } = useActor(page)
+    const { data : responseActor, isError } = useActor(page)
 
-    const sortByPopularity = data ? data.sort((a : any, b : any) => b.popularity - a.popularity) : [];
+    console.log(responseActor);
+    if (isError) return <RenderErrorPage/>
     return(
         <div className="">
             <h2>Celebrities</h2>
-            <RenderCaseroulCelebrities data={data}/>
+            <RenderCaseroulCelebrities data={responseActor}/>
         </div>
     )
 }

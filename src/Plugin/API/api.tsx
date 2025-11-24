@@ -1,12 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import type { Movie } from "../../type";
-import { InstanceAxios } from "./DefUrl";
+import { InstanceAxios, InstanceAxiosEmbed } from "./DefUrl";
 
-const InstanceAxiosEmbed = axios.create({
-  baseURL: 'https://phimapi.com/tmdb/',
-  timeout: 3000,
-})
+
 
 export function useNowPlayingMovies(page: number){
   return useQuery({
@@ -134,12 +131,11 @@ export const useTvShow = (page : number) => {
 //Actor
 export const useActor = (page : number) => {
   return useQuery({
-    queryKey : ['actor'],
+    queryKey : ['actor', page],
     queryFn : async () => {
-      const response = await InstanceAxios.get(`/person/popular?page=${page}`)
+      const response = await InstanceAxios.get(`/person/popular`)
       return response.data;
     },
-    staleTime: 3600,
     refetchOnWindowFocus: false
   })
 }
@@ -158,7 +154,6 @@ export const useEmbed = (id: string, type: string) => {
     queryKey: ["embed", id, type],
     queryFn : async() => {
         const response = await InstanceAxiosEmbed.get(`/${type}/${id}`)
-        console.log(type, id);
         return response.data;
     }
   })
@@ -174,18 +169,16 @@ export async function getListActorOfFilm(id: string) {
     throw error;
   }
 }
-export async function getTrailerOfFilm(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/movie/${id}/videos`);
-    if (response) {
-      return response.data
+export const useTrailerOfFilm = (id: string) => {
+  return useQuery({
+    queryKey: ["embed", id],
+    queryFn : async() => {
+        const response = await InstanceAxios.get(`/movie/${id}/videos`);
+        return response.data;
     }
-  } catch (error) {
-    console.error("Lỗi khi lấy chi tiết trailer bộ phim:", error);
-    throw error;
-  }
+  })
 }
-export const getKeywordOfMovie = (id: string) => {
+export const useKeywordOfMovie = (id: string) => {
   return useQuery({
     queryKey: [`keyword_movie_${id}`, id],
     queryFn: async () =>{
