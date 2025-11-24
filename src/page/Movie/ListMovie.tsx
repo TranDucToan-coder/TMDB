@@ -1,35 +1,23 @@
-import { useState, useEffect } from "react";
-import { getListMovie } from "../../Plugin/API/api";
-import type { MovieResponse } from "../../type"
-import Paginate from "../../Plugin/Paginate/Paginate";
-import style from './css/ListMovie.module.css'
-import Item from "./item";
+import { useState,  useMemo } from "react";
+import { useNowPlayingMovies } from "../../Plugin/API/api";
+import { RenderListItemMovie } from "../RenderFeature/renderListMovie";
+import { RenderPagination } from "../../Plugin/Paginate/paginate";
+import type { MovieResponse } from "../../type";
 
 const ListMovie = () => {
-    const [data, setData] = useState<MovieResponse | null>(null)
     const [page, setPage] = useState<number>(1)
-    const getData = async () => {
-        const response = await getListMovie(page);
-        if (response) {
-            setData(response)
-        }
-    }
-    useEffect(() => {
-        getData();
-    }, [page])
+
+    const {data} = useNowPlayingMovies(page)
+    
+    const ResponseData : MovieResponse = useMemo(() => (
+        data || []
+    ),[])
+    const totalPages = ResponseData.total_pages
+
     return (
-        <div className={style.wrapper}>
-            {data?.results?.length ? (
-                <div className={style.content}>
-                    {data?.results.map((item) => (
-                        <div key={item.id} className={style.item}>
-                            <Item id={item.id} poster_path={item.poster_path} title={item.title}></Item>
-                        </div>
-                    ))}
-                </div>) : (
-                <p>Loading</p>
-            )}
-            {data && <Paginate page={page} setPage={setPage} data={data}></Paginate>}
+        <div className="w-full m-auto sm:w-2/4">
+            <RenderListItemMovie data={data}/>
+            <RenderPagination page={page} setPage={setPage} totalPages={totalPages}/>
         </div>
     )
 }

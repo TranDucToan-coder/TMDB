@@ -1,26 +1,42 @@
 import { Link } from 'react-router-dom'
-import style from './Css/navigate.module.css'
-import React, { useEffect, useState } from 'react'
-import SearchBox from '../Plugin/Search/SearchBox'
+import { Input } from '../components/ui/input'
+import { ModeToggle } from '../components/ui/mode-toggle'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "../components/ui/navigation-menu"
+
+const Menu = () => (
+    <NavigationMenu className='z-1000'>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Menu</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <NavigationMenuLink href='/danh_sach_phim/movie' className='w-50'>Phim lẻ</NavigationMenuLink>
+            <NavigationMenuLink href='/danh_sach_phim/tv'>Phim bộ</NavigationMenuLink>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+
+  )
+
 const TopNavigate = () => {
-    const [value, setValue] = useState<string>("");
-    const handleChangeSearchBox = (e : React.ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    }
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    const watchList = localStorage.getItem('watchList') || '[]';
-    const convertArr = watchList ? JSON.parse(watchList) : [];
-    console.log(convertArr)
-    return (
-        <div className={style.top_navigate}>
-            <ul>
-                <li><Link to={'/'}><img src='/logo.png' className={style.logo} ></img></Link></li>
-                <li><Link to={'/danh_sach_phim/movie'}>MENU</Link></li>
-                <li><input type="text" value={value} onChange={(e) => handleChangeSearchBox(e)}></input></li>
-                {user ? (<li>{user.username}</li>) : (<li><Link to={'/login'}>Sign in</Link></li>)}
-                <li><div>Watchlist: {convertArr.length}</div></li>
-            </ul>
-        </div>
-    )
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+  return (
+    <div className="w-full flex flex-row justify-between flex-wrap gap-2 items-center m-auto p-4 mb-4
+    sm:w-2/4 sm:">
+      <div className='w-auto'><Link to={'/'}><img src='/logo.png' className="w-20 rounded" ></img></Link></div>
+      <div className='w-auto'><Menu /></div>
+      <div className='w-full sm:w-2/4'><Input className='w-full sm:w-full'></Input></div>
+      {user ? (<div>{user.username}</div>) : (<div><Link to={'/login'}>Sign in</Link></div>)}
+      <div><ModeToggle /></div>
+    </div>
+  )
 }
 export default TopNavigate

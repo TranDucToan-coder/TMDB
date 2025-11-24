@@ -1,29 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import type { Movie } from "../../type";
+import { InstanceAxios } from "./DefUrl";
 
-const InstanceAxios = axios.create({
-  baseURL: 'https://api.themoviedb.org/3',
-  timeout: 3000,
-  headers: {
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMTQ5MzMxNzk0MjFmMjZlOGY0ODgwNzMxOTQ0NTAzYyIsIm5iZiI6MTcyNDc1NzM1Ny45NDksInN1YiI6IjY2Y2RiNTZkODU1ZDMxYzhlYTQ1NGI1ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ADyNEQyUi84VzKuuloT9-W1Fju7KVYwYu9Mzd3NDCBA',
-    "Content-Type" : 'application/json',
-  },
-})
 const InstanceAxiosEmbed = axios.create({
   baseURL: 'https://phimapi.com/tmdb/',
   timeout: 3000,
 })
-export async function getListMovie(page: number) {
-  try {
-    const response = await InstanceAxios.get(`/movie/now_playing?page=${page}`)
-    if (response) {
-      return response.data;
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy danh sách phim:", error);
-    throw error;
-  }
-}
+
 export function useNowPlayingMovies(page: number){
   return useQuery({
     queryKey : ['now_playing', page],
@@ -32,6 +16,24 @@ export function useNowPlayingMovies(page: number){
       return res.data;
     },
     staleTime : 3600,
+  })
+}
+export const useMovie = (id: string) => {
+  return useQuery({
+    queryKey: ["detail_movie", id],
+    queryFn: async () => {
+      if (!id) return;
+      try {
+        const res = await InstanceAxios.get(`/movie/${id}`);
+        return res.data;
+      } catch (error: any) {
+        if (error.response?.status === 404) {
+          return null;
+        }
+        throw error;
+      }
+    },
+    refetchOnWindowFocus: false
   })
 }
 export async function getAllMovie() {
@@ -70,7 +72,7 @@ export async function getTrailer(page: number) {
     if (response) {
       const dataMovie = response.data.results;
       const responseTrailer = await Promise.all(
-        dataMovie.map(async (movie: any) => {
+        dataMovie.map(async (movie: Movie) => {
           const data = await InstanceAxios.get(`/movie/${movie.id}/videos?page=${page}`)
           const keyVideo = data?.data?.results[1]?.key;
           return {
@@ -87,6 +89,14 @@ export async function getTrailer(page: number) {
     console.error("Lỗi khi lấy danh sách phim:", error);
     throw error;
   }
+}
+export const useTrailer = (page: number) => {
+  return useQuery({
+    queryKey: ["trailer", page],
+    queryFn: () => getTrailer(page),
+    staleTime: 1000 * 60 * 5,
+    refetchOnWindowFocus: false,
+  })
 }
 export async function getDataUpcoming(page: number) {
   try {
@@ -111,65 +121,49 @@ export async function getListTv(page: number) {
     throw error;
   }
 }
-export async function getListTV_popular(page: number) {
-  try {
-    const response = await InstanceAxios.get(`/tv/popular?page=${page}`)
-    if (response) {
-      return response.data;
+export const useTvShow = (page : number) => {
+  return useQuery({
+    queryKey: ["tvShow", page],
+    queryFn: async () => {
+      const response = await InstanceAxios.get(`/tv/popular?page=${page}`)
+      return response.data
     }
-  } catch (error) {
-    console.error("Lỗi khi lấy danh sách phim:", error);
-    throw error;
-  }
+  })
 }
+
 //Actor
-export async function getActor(page: number) {
-  try {
-    const response = await InstanceAxios.get(`/person/popular?page=${page}`)
-    if (response) {
+export const useActor = (page : number) => {
+  return useQuery({
+    queryKey : ['actor'],
+    queryFn : async () => {
+      const response = await InstanceAxios.get(`/person/popular?page=${page}`)
       return response.data;
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy danh sách diễn viên:", error);
-    throw error;
-  }
+    },
+    staleTime: 3600,
+    refetchOnWindowFocus: false
+  })
 }
-export async function getMultiOfFilm(query: string) {
-  try {
-    const response = await InstanceAxios.get(`/search/multi`, { params: { query } })
-    if (response) {
-      console.log(response)
-      return (response.data)
+//
+export const useMulti = (query : string) => {
+  return useQuery({
+    queryKey: ["multi", query],
+    queryFn : async() => {
+        const response = await InstanceAxios.get(`/search/multi`, { params: { query } })
+        return response.data;
     }
-  } catch (error) {
-    console.error("Lỗi khi lấy multi bộ phim:", error);
-    throw error;
-  }
+  })
 }
-export async function getEmbedFilm(id: string, type: string) {
-  try {
-    const response = await InstanceAxiosEmbed.get(`/${type}/${id}`)
-    if (response) {
-      console.log(response)
-      return (response.data)
+export const useEmbed = (id: string, type: string) => {
+  return useQuery({
+    queryKey: ["embed", id, type],
+    queryFn : async() => {
+        const response = await InstanceAxiosEmbed.get(`/${type}/${id}`)
+        console.log(type, id);
+        return response.data;
     }
-  } catch (error) {
-    console.error("Lỗi khi lấy chi tiết bộ phim:", error);
-    throw error;
-  }
+  })
 }
 //Detail
-export async function getDetailOfFilm(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/movie/${id}`)
-    if (response) {
-      return (response.data)
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy chi tiết bộ phim:", error);
-    throw error;
-  }
-}
 export async function getListActorOfFilm(id: string) {
   try {
     const response = await InstanceAxios.get(`/movie/${id}/credits`)
@@ -191,39 +185,39 @@ export async function getTrailerOfFilm(id: string) {
     throw error;
   }
 }
-export async function getKeywordFilm(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/movie/${id}/keywords`);
-    if (response) {
+export const getKeywordOfMovie = (id: string) => {
+  return useQuery({
+    queryKey: [`keyword_movie_${id}`, id],
+    queryFn: async () =>{
+      if(!id) return null;
+      const response = await InstanceAxios.get(`/movie/${id}/keywords`)
       return response.data;
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy keyword bộ phim:", error);
-    throw error;
-  }
+    },
+    refetchOnWindowFocus: false
+  })
 }
 //DetailTVShow
-export async function getDetailOfTv(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/tv/${id}`)
-    if (response) {
-      return (response.data)
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy chi tiết bộ phim:", error);
-    throw error;
-  }
-}
-export async function getKeywordTV(id: string) {
-  try {
-    const response = await InstanceAxios.get(`/tv/${id}/keywords`);
-    if (response) {
+export const useDetailOftv = (id : string) => {
+  return useQuery({
+    queryKey: [`tvShow_${id}`, id],
+    queryFn: async () =>{
+      if(!id) return null;
+      const response = await InstanceAxios.get(`/tv/${id}`)
       return response.data;
-    }
-  } catch (error) {
-    console.error("Lỗi khi lấy keyword bộ phim:", error);
-    throw error;
-  }
+    },
+    refetchOnWindowFocus: false
+  })
+}
+export const useKeywordDetailOftv = (id : string) => {
+  return useQuery({
+    queryKey: [`keyword_tvShow_${id}`, id],
+    queryFn: async () =>{
+      if(!id) return null;
+      const response = await InstanceAxios.get(`/tv/${id}/keywords`)
+      return response.data;
+    },
+    refetchOnWindowFocus: false
+  })
 }
 export async function getListActorOfTv(id: string) {
   try {
