@@ -34,8 +34,9 @@ const LoginForm = ({ state, setState }: StateProps) => {
         if (user.username === account.username) {
             if (user.password === account.password) {
                 console.log("Login thành công")
-                localStorage.setItem("user", JSON.stringify(user));
-                navigate("/")
+                navigate("/login/auth", {state : {
+                    user
+                }})
                 window.location.reload()
             }
         }
