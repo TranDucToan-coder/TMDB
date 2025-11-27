@@ -9,8 +9,9 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../components/ui/navigation-menu"
-import { useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Button } from '../components/ui/button'
+import { SearchContext } from '../Plugin/Context/SearchContext'
 
 const Menu = () => (
   <NavigationMenu className='z-1000'>
@@ -46,6 +47,11 @@ const MenuProfile = ({ handleLogOut }: UserProps) => (
 const TopNavigate = () => {
   const userString = localStorage.getItem('user');
   const user = userString ? JSON.parse(userString) : null;
+  const {query, setQuery} = useContext(SearchContext)
+
+  const handleChangeQuery = (e : any) => {
+    setQuery(e.target.value)
+  }
 
   const handleLogOut = () => { 
     localStorage.removeItem("user")
@@ -64,7 +70,7 @@ const TopNavigate = () => {
         <Menu />
       </div>
       <div className="hidden sm:block w-2/4">
-        <Input className="w-full" />
+        <Input className="w-full" value={query} onChange={(e) => handleChangeQuery(e)}/>
       </div>
       {user ? (
         <div><MenuProfile handleLogOut={handleLogOut} /></div>

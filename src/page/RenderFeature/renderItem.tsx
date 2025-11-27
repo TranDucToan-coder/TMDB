@@ -11,7 +11,11 @@ export const MovieItem = ({ id, poster_path, title }: PropsItem) => {
     return (
         <Link to={`/movie/${id}`} className="relative">
             <div className="">
-                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`}/>
+                {poster_path ?
+                    <img className='h-70' src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
+                    :
+                    <img className='h-70' src="/public/default-image_600.png"/>
+                }
                 <span className="absolute bottom-0 top-0 z-50 w-1/3">
                     <Btn_WatchList id={id}></Btn_WatchList>
                 </span>
@@ -27,7 +31,11 @@ export const TvShowItem = ({ id, poster_path, title }: PropsItem) => {
     return (
         <Link to={`/tv/${id}`} className="relative">
             <div className="">
-                <img src={`https://image.tmdb.org/t/p/w500${poster_path}`}/>
+                {poster_path ?
+                    <img className='h-70' src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
+                    :
+                    <img className='h-70' src="/public/default-image_600.png"/>
+                }
                 <span className="absolute bottom-0 top-0 z-50 w-1/3">
                     <Btn_WatchList id={id}></Btn_WatchList>
                 </span>

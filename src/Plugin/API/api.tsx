@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import type { Movie } from "../../type";
 import { InstanceAxios, InstanceAxiosEmbed } from "./DefUrl";
 
@@ -31,6 +30,16 @@ export const useMovie = (id: string) => {
       }
     },
     refetchOnWindowFocus: false
+  })
+}
+export const useSearchMmovie = (query: string, page: number) => {
+    return useQuery({
+    queryKey: [`movie:${query}`, query, page],
+    queryFn: async() => {
+      const response = await InstanceAxios.get(`/search/movie?query=${query}&page=${page}`)
+      console.log(response);
+      return response.data;
+    }
   })
 }
 export async function getAllMovie() {
@@ -127,7 +136,16 @@ export const useTvShow = (page : number) => {
     }
   })
 }
-
+export const useSearchTvShow = (page: number, query: string) => {
+  return useQuery({
+    queryKey: [`tvShow:${query}`, query, page],
+    queryFn: async() => {
+      const response = await InstanceAxios.get(`/search/tv?query=${query}&page=${page}`)
+      console.log(response);
+      return response.data;
+    }
+  })
+}
 //Actor
 export const useActor = (page : number) => {
   return useQuery({
